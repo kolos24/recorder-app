@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico"><!-- 32×32 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .json-container {
+            margin-top: 20px;
+        }
+        pre {
+            width: 100%;
+            height: 300px;
+            font-family: monospace;
+            font-size: 14px;
+            background-color: #f4f4f4;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+        }
+        .download-btn {
+            margin-top: 10px;
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .download-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Просмотр JSON</h1>
+    <div class="json-container">
+        <label for="json-view">Данные JSON:</label>
+        <pre id="json-view">{{ json_data }}</pre>
+        <br />
+        <button class="download-btn" onclick="downloadJSON()">Скачать JSON</button>
+    </div>
+    <script>
+        function downloadJSON() {
+            const jsonData = document.getElementById("json-view").textContent;
+            const blob = new Blob([jsonData], { type: "application/json" });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "data.json";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+        }
+    </script>
+</body>
+</html>

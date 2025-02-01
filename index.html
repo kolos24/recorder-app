@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="favicon.ico"><!-- 32×32 -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Загрузка файла</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .form-container {
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+
+        select, input[type="file"], input[type="checkbox"] {
+            margin-bottom: 20px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            margin-right: 10px;
+        }
+
+        .checkbox-label {
+            display: flex;
+            align-items: center;
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .submit-button {
+            background: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 10px;
+            font-size: 1em;
+            cursor: pointer;
+            width: 100%;
+            transition: background 0.3s;
+        }
+
+        .submit-button:hover {
+            background: #0056b3;
+        }
+
+        .description {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h1>Загрузка файла</h1>
+        <form action="http://127.0.0.1:8000/extract-text/" method="post" enctype="multipart/form-data">
+            <label for="template">Выберите шаблон:</label>
+            <select name="template" id="template">
+                {{ options }}
+            </select>
+            <div class="description">Выберите шаблон, который будет использоваться для обработки файла.</div>
+
+            <label for="pdf_file">Загрузите PDF файл:</label>
+            <input type="file" name="pdf_file" id="pdf_file" accept=".pdf" required>
+
+            <div class="checkbox-label">
+                <input type="checkbox" name="use_page" id="use_page" value="yes">
+                <label for="use_page">Вывод данных на отдельной странице</label>
+            </div>
+            <div class="description">Отметьте этот флажок, если хотите, чтобы результаты обработки отображались на отдельной странице.</div>
+
+            <input type="submit" value="Загрузить" class="submit-button">
+        </form>
+    </div>
+</body>
+</html>
