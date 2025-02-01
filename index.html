@@ -88,7 +88,7 @@
 <body>
     <div class="form-container">
         <h1>Загрузка файла</h1>
-        <form action="http://127.0.0.1:8000/extract-text/" method="post" enctype="multipart/form-data">
+        <form action="/extract-text/" method="post" enctype="multipart/form-data">
             <label for="template">Выберите шаблон:</label>
             <select name="template" id="template">
                 {{ options }}
